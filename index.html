@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D模型展示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 64px;
+            color: #4299e1;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #718096;
+            margin-bottom: 40px;
+        }
+
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .module {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .module:hover {
+            transform: translateY(-5px);
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            color: #4299e1;
+            margin-bottom: 20px;
+        }
+
+        .module-title {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .module-content {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .gestures {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .gesture {
+            text-align: center;
+        }
+
+        .gesture-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .gesture-label {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .actions {
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 40px;
+            background: #4299e1;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #3182ce;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(66, 153, 225, 0.3);
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+        }
+
+        .info {
+            margin-top: 30px;
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .modules {
+                grid-template-columns: 1fr;
+            }
+
+            .module {
+                padding: 25px 20px;
+            }
+
+            .logo {
+                font-size: 48px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-cube"></i>
+        </div>
+
+        <h1>3D模型展示</h1>
+
+        <div class="modules">
+            <div class="module">
+                <div class="module-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h2 class="module-title">集中供应3D模型</h2>
+                <div class="module-content">
+
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h2 class="module-title">手机操作指南</h2>
+
+                <div class="gestures">
+                    <div class="gesture">
+                        <span class="gesture-icon">👆</span>
+                        <div class="gesture-label">单指旋转</div>
+                    </div>
+                    <div class="gesture">
+                        <span class="gesture-icon">✌️</span>
+                        <div class="gesture-label">双指缩放</div>
+                    </div>
+                    <div class="gesture">
+                        <span class="gesture-icon">🖐️</span>
+                        <div class="gesture-label">双指平移</div>
+                    </div>
+                    <div class="gesture">
+                        <span class="gesture-icon">💥</span>
+                        <div class="gesture-label">双击重置</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="model-view.html" class="btn">
+                <i class="fas fa-external-link-alt"></i>
+                进入模型展示
+            </a>
+        </div>
+
+        <div class="info">
+            支持电脑和手机访问 
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script>
+        // 页面加载动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const modules = document.querySelectorAll('.module');
+            modules.forEach((module, index) => {
+                module.style.animationDelay = `${index * 0.1}s`;
+                module.style.opacity = '0';
+                module.style.animation = 'fadeInUp 0.5s ease forwards';
+            });
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
